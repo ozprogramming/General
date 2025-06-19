@@ -3,39 +3,30 @@
 
 #include "library.h"
 
-// Layer Structure
 typedef struct
 {
-    double bias;
-    double d_bias;
-    Matrix* d_weights;
-    Matrix* weights;
-    Matrix* input;
-    Matrix* output;
-    char* activation;
-
-} Layer;
-
-// Model Structure
-typedef struct
-{
-    int length;
     double learningRate;
-    Layer** layers;
-    Matrix* d_Error;
+    double momentum;
+    double decay;
+    int length;
+    Matrix** weights;
+    Matrix** d_weights;
+    double* bias;
+    double* d_bias;
+    char** activation;
     char* loss;
-} Model;
+    char* optimizer;
+}
+MLP;
 
-// Model Code Operation
-Model* newModel(const int* layerLengths, int layerCount, double learningRate, char* loss);
-void delModel(Model* model);
+// Code Operation
+MLP* newMLP(const int layerCount, int* layerLengths, double learningRate, char** activation, char* loss, char* optimizer);
+void delMLP(MLP* model);
 
-// Model Training, Testing, & Prediction
-void train();
-double test();
-void predict();
+// Train
+void fitMLP(Matrix** inputs, Matrix** expected, MLP* model, const int numInputs, const int batchSize, const int epochs, const bool shuffle);
 
-// Model Display
-void printModel(Model* model);
+// Single Input/Output
+Matrix* outputMLP(Matrix* input, MLP* model);
 
 #endif //MODEL_H

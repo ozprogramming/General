@@ -3,9 +3,9 @@
 
 #include "library.h"
 
-Matrix* meanSquaredError(Matrix* prediction, Matrix* actual);
+double meanSquaredError(Matrix* prediction, Matrix* actual);
 
-Matrix* categoricalCrossEntropyError(Matrix* prediction, Matrix* actual);
+double categoricalCrossEntropyError(Matrix* prediction, Matrix* actual);
 
 Matrix* d_meanSquaredError(Matrix* prediction, Matrix* actual);
 

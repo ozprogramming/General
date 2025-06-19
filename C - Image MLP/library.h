@@ -12,6 +12,7 @@ typedef struct
 // Code Operation
 Matrix* newMatrix(int rows, int cols, double init);
 Matrix* newIdentityMatrix(int size);
+void clearMatrix(Matrix* matrix);
 void delMatrix(Matrix* matrix);
 Matrix* copyMatrix(Matrix* matrix);
 

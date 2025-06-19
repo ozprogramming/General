@@ -1,16 +1,17 @@
 #ifndef ACTIVATION_H
 #define ACTIVATION_H
 #include "library.h"
-#include "model.h"
 
-void ReLU(Matrix* rawOutput);
-void leakyReLU(Matrix* rawOutput);
-void sigmoid(Matrix* rawOutput);
-void softmax(Matrix* rawOutput);
+Matrix* relu(Matrix* input);
+Matrix* leakyRelu(Matrix* input);
+Matrix* sigmoid(Matrix* input);
+Matrix* hypTan(Matrix* input);
+Matrix* softmax(Matrix* input);
 
-Matrix* d_ReLU(Matrix* output);
-Matrix* d_leakyReLU(Matrix* output);
+Matrix* d_relu(Matrix* output);
+Matrix* d_leakyRelu(Matrix* output);
 Matrix* d_sigmoid(Matrix* output);
-Matrix* d_softmax(Layer* layer);
+Matrix* d_hypTan(Matrix* output);
+Matrix* d_softmax(Matrix* output);
 
 #endif //ACTIVATION_H

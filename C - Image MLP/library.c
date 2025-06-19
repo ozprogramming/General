@@ -56,17 +56,32 @@ Matrix* newIdentityMatrix(const int size)
     return matrix;
 }
 
-void delMatrix(Matrix* matrix)
+void clearMatrix(Matrix* matrix)
 {
     for (int i = 0; i < matrix->rows; i++)
     {
-        free(matrix->entries[i]);
+        for (int j = 0; j < matrix->cols; j++)
+        {
+            matrix->entries[i][j] = 0;
+        }
     }
-
-    free(matrix->entries);
 }
 
-Matrix* copyMatrix(Matrix* matrix) {
+void delMatrix(Matrix* matrix)
+{
+    if (matrix != nullptr)
+    {
+        for (int i = 0; i < matrix->rows; i++)
+        {
+            free(matrix->entries[i]);
+        }
+
+        free(matrix->entries);
+    }
+}
+
+Matrix* copyMatrix(Matrix* matrix)
+{
     Matrix* copy = newMatrix(matrix->rows, matrix->cols, 0);
 
     for (int i = 0; i < matrix->rows; i++) {
@@ -252,7 +267,7 @@ void randomizeEntries(Matrix* matrix, const double min, const double max)
     {
         for (int j = 0; j < matrix->cols; j++)
         {
-            matrix->entries[i][j] = max * ((double) rand() / RAND_MAX) + min;
+            matrix->entries[i][j] = (max - min) * ((double) rand() / RAND_MAX) + min;
         }
     }
 }
